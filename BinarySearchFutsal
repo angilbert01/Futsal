@@ -1,0 +1,26 @@
+import java.util.*;
+
+public class BinarySearchFutsal {
+    public static void main(String[] args) {
+        ArrayList<Integer> tinggiA = new ArrayList<>(Arrays.asList(168, 170, 165, 168, 172, 170, 169, 165, 171, 166));
+        ArrayList<Integer> beratA  = new ArrayList<>(Arrays.asList(50, 60, 56, 55, 60, 70, 66, 56, 72, 56));
+        ArrayList<Integer> tinggiB = new ArrayList<>(Arrays.asList(170, 167, 165, 166, 168, 175, 172, 171, 168, 169));
+        ArrayList<Integer> beratB  = new ArrayList<>(Arrays.asList(66, 60, 59, 58, 58, 71, 68, 68, 65, 60));
+
+        // a) Sort tinggiB dan cari jumlah 168 & 160
+        Collections.sort(tinggiB);
+        System.out.println("\nJumlah pemain Tim B tinggi 168: " + Collections.frequency(tinggiB, 168));
+        System.out.println("Jumlah pemain Tim B tinggi 160: " + Collections.frequency(tinggiB, 160));
+
+        // b) Sort beratA dan cari jumlah 56 & 53
+        Collections.sort(beratA);
+        System.out.println("Jumlah pemain Tim A berat 56: " + Collections.frequency(beratA, 56));
+        System.out.println("Jumlah pemain Tim A berat 53: " + Collections.frequency(beratA, 53));
+
+        // c) Apakah ada tinggi/berat yang sama antara Tim A dan Tim B?
+        boolean adaSamaTinggi = !Collections.disjoint(tinggiA, tinggiB);
+        boolean adaSamaBerat = !Collections.disjoint(beratA, beratB);
+        System.out.println("Ada tinggi yang sama? " + (adaSamaTinggi ? "Ya" : "Tidak"));
+        System.out.println("Ada berat yang sama? " + (adaSamaBerat ? "Ya" : "Tidak"));
+    }
+}
