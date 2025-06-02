@@ -1,0 +1,68 @@
+import java.util.*;
+
+class Pemain {
+    int tinggi;
+    int berat;
+
+    public Pemain(int tinggi, int berat) {
+        this.tinggi = tinggi;
+        this.berat = berat;
+    }
+
+    public String toString() {
+        return "[Tinggi: " + tinggi + ", Berat: " + berat + "]";
+    }
+}
+
+public class FutsalTim {
+    public static void main(String[] args) {
+        // Data Tim A
+        ArrayList<Pemain> timA = new ArrayList<>(Arrays.asList(
+            new Pemain(168, 50), new Pemain(170, 60), new Pemain(165, 56),
+            new Pemain(168, 55), new Pemain(172, 60), new Pemain(170, 70),
+            new Pemain(169, 66), new Pemain(165, 56), new Pemain(171, 72),
+            new Pemain(166, 56)
+        ));
+
+        // Data Tim B
+        ArrayList<Pemain> timB = new ArrayList<>(Arrays.asList(
+            new Pemain(170, 66), new Pemain(167, 60), new Pemain(165, 59),
+            new Pemain(166, 58), new Pemain(168, 58), new Pemain(175, 71),
+            new Pemain(172, 68), new Pemain(171, 68), new Pemain(168, 65),
+            new Pemain(169, 60)
+        ));
+
+        Comparator<Pemain> sortTinggiAsc = Comparator.comparingInt(p -> p.tinggi);
+        Comparator<Pemain> sortTinggiDesc = (p1, p2) -> Integer.compare(p2.tinggi, p1.tinggi);
+        Comparator<Pemain> sortBeratAsc = Comparator.comparingInt(p -> p.berat);
+        Comparator<Pemain> sortBeratDesc = (p1, p2) -> Integer.compare(p2.berat, p1.berat);
+
+        // A. Sort tinggi dan berat
+        System.out.println("=== Sort Tinggi Ascending (Tim A + Tim B) ===");
+        ArrayList<Pemain> gabungan = new ArrayList<>();
+        gabungan.addAll(timA);
+        gabungan.addAll(timB);
+        gabungan.sort(sortTinggiAsc);
+        gabungan.forEach(System.out::println);
+
+        System.out.println("\n=== Sort Tinggi Descending ===");
+        gabungan.sort(sortTinggiDesc);
+        gabungan.forEach(System.out::println);
+
+        System.out.println("\n=== Sort Berat Ascending ===");
+        gabungan.sort(sortBeratAsc);
+        gabungan.forEach(System.out::println);
+
+        System.out.println("\n=== Sort Berat Descending ===");
+        gabungan.sort(sortBeratDesc);
+        gabungan.forEach(System.out::println);
+
+        // B. Min dan Max untuk tinggi & berat tiap tim
+        System.out.println("\n=== Nilai Minimum & Maksimum ===");
+        minMax("Tim A", timA);
+        minMax("Tim B", timB);
+
+        // C. Copy anggota Tim B ke Tim C
+        ArrayList<Pemain> timC = new ArrayList<>();
+        for (Pemain p : timB) {
+            timC.add(new Pemain(p.tinggi, p.be
